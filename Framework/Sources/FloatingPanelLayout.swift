@@ -8,11 +8,13 @@ import UIKit
 public protocol FloatingPanelLayout: class {
     /// Returns the initial position of a floating panel
     var initialPosition: FloatingPanelPosition { get }
+
     /// Returns an array of FloatingPanelPosition object to tell the applicable position the floating panel controller
     var supportedPositions: [FloatingPanelPosition] { get }
 
     /// Return the interaction buffer of full position. Default is 6.0.
     var topInteractionBuffer: CGFloat { get }
+
     /// Return the interaction buffer of full position. Default is 6.0.
     var bottomInteractionBuffer: CGFloat { get }
 
@@ -21,9 +23,10 @@ public protocol FloatingPanelLayout: class {
     /// On the other hand, values fro half and tip positions indicate insets from the safe area bottom.
     /// If a position doesn't contain the supported positions, return nil.
     func insetFor(position: FloatingPanelPosition) -> CGFloat?
+
     /// Returns layout constraints for a surface view of a floaitng panel.
-    /// The layout constraints must not include ones for topAnchor and bottomAnchor
-    /// because constarints for them will be added by the floating panel controller.
+    /// You must not include the layout constraints of topAnchor and bottomAnchor of the surface view
+    /// because the constarints will be added by the floating panel controller.
     func prepareLayout(surfaceView: UIView, in view: UIView) -> [NSLayoutConstraint]
 
     /// Return the backdrop alpha of black color in full position. Default is 0.3.
